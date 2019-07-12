@@ -11,7 +11,14 @@ COPY patches/ /defaults/patches/
 
 ARG UGID=1000
 
-RUN \
+RUN addgroup -g $UGID rtorrent && \
+    adduser -S -u $UGID -G rtorrent rtorrent && \
+    apk add --no-cache rtorrent && \
+    mkdir -p /home/rtorrent/rtorrent/config.d && \
+    mkdir /home/rtorrent/rtorrent/.session && \
+    mkdir /home/rtorrent/rtorrent/download && \
+    mkdir /home/rtorrent/rtorrent/watch && \
+    chown -R rtorrent:rtorrent /home/rtorrent/rtorrent \
  echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
 	g++ \
@@ -70,15 +77,6 @@ RUN \
 	/etc/nginx/conf.d/default.conf \
 	/root/.cache \
 	/tmp/*
-
- addgroup -g $UGID rtorrent && \
- adduser -S -u $UGID -G rtorrent rtorrent && \
- apk add --no-cache rtorrent && \
- mkdir -p /home/rtorrent/rtorrent/config.d && \
- mkdir /home/rtorrent/rtorrent/.session && \
- mkdir /home/rtorrent/rtorrent/download && \
- mkdir /home/rtorrent/rtorrent/watch && \
- chown -R rtorrent:rtorrent /home/rtorrent/rtorrent
 
 # add local files
 COPY root/ /
