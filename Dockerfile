@@ -18,7 +18,7 @@ RUN addgroup -g $UGID rtorrent && \
     mkdir /home/rtorrent/rtorrent/.session && \
     mkdir /home/rtorrent/rtorrent/download && \
     mkdir /home/rtorrent/rtorrent/watch && \
-    chown -R rtorrent:rtorrent /home/rtorrent/rtorrent \
+    chown -R rtorrent:rtorrent /home/rtorrent/rtorrent && \
  echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
 	g++ \
