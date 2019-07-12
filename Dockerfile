@@ -5,7 +5,7 @@ LABEL description="rTorrent on Alpine Linux, with a better Docker integration."
 LABEL website="https://github.com/TuxMeaLux/alpine-rtorrent"
 LABEL version="1.0"
 
-ARG UGID=666
+ARG UGID=1000
 
 RUN addgroup -g $UGID rtorrent && \
     adduser -S -u $UGID -G rtorrent rtorrent && \
